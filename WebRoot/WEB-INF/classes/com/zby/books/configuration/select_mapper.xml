@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zby.books.configuration.select_mapper">
+	
+	<!-- 查询出版社表 -->
+	<select id="select_press" resultType="Press" parameterType="Map">
+		select 
+			address,
+			ICP,
+			phone,
+			pid,
+			pname,
+			postcode,
+			purchasephone purchasePhone ,
+			website 
+		from 
+			press
+		<where>
+			<if test="pid != null">
+				pid=#{pid}
+			</if>
+			<if test="pname != null">
+				and pname=#{pname}
+			</if>
+		</where>
+	</select>
+
+	<select id="select_admin" resultType="Admin" parameterType="Admin">
+		SELECT aname,apass,id,pressname as pressName from admin
+		<where>
+			<if test="aname != null">
+				aname = #{aname}
+			</if>
+			<if test="apass != null">
+				and apass = #{apass}
+			</if>
+			<if test="pressName != null">
+				and pressname = #{pressName}		
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查找用户名 -->
+	<select id="select_user" parameterType="User" resultType="User">
+		SELECT
+			uid,
+			uname,
+			newpass,
+			uphone,
+			sex usex,
+			uemail,
+			logindate loginDateTime,
+			signin,
+			member,
+			portrait
+		FROM
+			USER
+		<where>
+			<if test="uname != null">
+				uname = #{uname}
+			</if>
+			<if test="newpass != null">
+				and newpass = #{newpass}
+			</if>
+			<if test="uid != null ">
+				and uid = #{uid}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 按照pressid查找图书 -->
+	<select id="select_book_byBisbn" resultType="Book" parameterType="String">
+		SELECT 
+			b.bname bname,
+			b.bisbn bisbn,
+			b.authorName authorName
+		from 
+			book b,
+			press p 
+		where 
+			p.pname like CONCAT('%',#{pname},'%') and p.pid=b.pressId;
+	</select>
+	
+	
+	<!-- 查找图书 -->
+	<select id="select_book" parameterType="Book" resultType="Book">
+		 SELECT
+			bid,
+			bisbn,
+			pressId,
+			authorName,
+			gid genresId,
+			bname,
+			bprice,
+			bpublication publication,
+			bnumber,
+			bimg,
+			babstract,
+			bstatus,
+			earnest,
+			borrowedtime borrowedTime,
+			clickedtime clickedTime
+		FROM
+			book
+		<where>
+			<if test="bid != null">
+				bid = #{bid}
+			</if>
+			<if test="bisbn != null">
+				and bisbn = #{bisbn}
+			</if>
+			<if test="bstatus != null">
+				and bstatus = #{bstatus}
+			</if>
+			<if test="bname != null">
+				and bname like CONCAT('%',#{bname},'%')
+			</if>
+			<if test="authorName != null">
+				and authorName like CONCAT('%',#{authorName},'%')
+			</if>
+			<if test="pressId != null">
+				and pressId = #{pressId}
+			</if>
+			<if test="genresId != null">
+				and gid = #{genresId}
+			</if>
+			  and bnumber>0;
+		</where>
+	</select>
+	
+	<!-- 后台查找图书排序  -->
+	<select id="select_book_order" parameterType="Book" resultType="Book">
+		 SELECT
+			bid,
+			bisbn,
+			pressId,
+			authorName,
+			gid genresId,
+			bname,
+			bprice,
+			bpublication publication,
+			bnumber,
+			bimg,
+			babstract,
+			bstatus,
+			earnest,
+			borrowedtime borrowedTime,
+			clickedtime clickedTime
+		FROM
+			book
+		<where>
+			<if test="pressId != null">
+				pressId = #{pressId}
+			</if>		
+			<if test="bstatus != null">
+				and bstatus = #{bstatus}
+			</if>
+			<if test="bname != null">
+				and bname = #{bname}
+			</if>
+			<if test="authorName != null">
+				and authorName = #{authorName}
+			</if>
+			<if test="publicationFrom != null and publicationFrom != ''">
+				and bpublication &gt;= #{publicationFrom}
+			</if>
+			<if test="publicationTo != null and publicationTo != ''">
+				and bpublication &lt;= #{publicationTo}
+			</if>
+			  and bnumber>0
+		</where>
+		order by 
+			<choose>
+				<when test="orderType != null">
+					${orderType} DESC
+				</when>
+				<otherwise>
+					bid DESC
+				</otherwise>
+			</choose>
+	</select>
+	
+	
+	<!-- 查找isbn表 -->
+	<select id="select_isbn" parameterType="ISBN" resultType="ISBN">
+		SELECT
+			id,
+			bookcode bookCode,
+			isbn,
+			bookplace bookPlace,
+			status,
+			intactsituation intactSituation
+		from 
+ 			isbn
+ 		<where>
+ 			<if test="bookCode != null">
+ 				bookcode = #{bookCode}
+ 			</if>
+ 			<if test="bookPlace != null">
+ 				and bookplace like CONCAT('%',#{bookPlace},'%')
+ 			</if>
+ 			<if test="status != null">
+ 				and status = #{status}
+ 			</if>
+ 			<if test="intactSituation != null">
+ 				and intactsituation = #{intactSituation}
+ 			</if>
+ 			<if test="isbn != null">
+ 				and isbn = #{isbn}
+ 			</if>
+ 		</where>
+	</select>
+	
+	<!-- 查询bookcode的最大值 -->
+	<select id="select_maxBookcode" parameterType="String" resultType="String">
+		SELECT MAX(bookcode) from isbn WHERE isbn=#{isbn};
+	</select>
+	
+	
+	<!-- 查找订单表 -->
+	<select id="select_orderform" parameterType="OrderForm" resultType="OrderForm">
+		SELECT
+			order_id orderId,
+			user_id userId,
+			book_isbn bookIsbn,
+			bookcode bookCode,
+			lend_time lendTime,
+			return_time returnTime,
+			timeout timeout,
+			fine,
+			book_status bookStatus,
+			fine_reason fineReason,
+			userphone,
+			useraddress,
+			username,
+			bookname
+		from 
+			orderform
+		<where>
+			<if test="userId != null">
+				user_id = #{userId}
+			</if>
+			<if test="bookStatus != null">
+				and book_status = #{bookStatus}
+			</if>
+			<if test="bookIsbn != null">
+				and book_isbn = #{bookIsbn}
+			</if>
+			<if test="username != null">
+				and username = #{username}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 后台所用 -->
+		<select id="select_back_orderform" parameterType="OrderForm" resultType="OrderForm">
+		SELECT
+			order_id orderId,
+			user_id userId,
+			book_isbn bookIsbn,
+			bookcode bookCode,
+			lend_time lendTime,
+			return_time returnTime,
+			timeout timeout,
+			fine,
+			book_status bookStatus,
+			fine_reason fineReason,
+			userphone,
+			useraddress,
+			username,
+			bookname,
+			price
+		from 
+			orderform
+		<where>
+			<if test="userId != null">
+				user_id = #{userId}
+			</if>
+			<if test="bookStatus != null">
+				and book_status = #{bookStatus}
+			</if>
+			<if test="bookIsbn != null">
+				and book_isbn = #{bookIsbn}
+			</if>
+			<if test="lendTo != null and lendTo != ''">
+				and lend_time &lt;= #{lendTo}
+			</if>
+			<if test="lendFrom != null and lendFrom != ''">
+				and lend_time &gt;= #{lendFrom}
+			</if>
+			<if test="pressname != null">
+				and pressname = #{pressname}
+			</if>
+		</where>
+	</select>
+	
+	
+	<!-- 查找用户地址表 -->
+	<select id="select_userAddress" parameterType="String" resultType="UserAddress">
+		SELECT
+			id,
+			address,
+			uid,
+			username,
+			userphone
+		FROM
+			useraddress
+		<where>
+			<if test="uid != null">
+				uid = #{uid}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 评论表 -->
+	<select id="select_comment" resultType="Comment" parameterType="Comment">
+		select
+			id, 
+			uid,
+			isbn,
+			comment,
+			commentDate,
+			bookname 
+		from 
+			comments 
+		<where>
+			<if test="uid != null">
+				uid = #{uid}
+			</if>
+			<if test="isbn != null">
+				and isbn = #{isbn}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询练习后台管理员表 -->
+	<select id="select_contact_admin" resultType="ContactAdmin" parameterType="ContactAdmin">
+		SELECT 
+			caid,
+			content,
+			name,
+			phone,
+			pressname pressName,
+			status 
+		from 
+			contactadmin
+		<where>
+			<if test="status != null">
+				status = #{status}
+			</if>
+			<if test="pressName != null">
+			 and pressname = #{pressName}
+			</if>
+			<if test="caid != null">
+				and caid = #{caid}
+			</if>
+		</where> 
+	</select>
+		
+	<!-- 查询图书标签 -->
+	<select id="select_tag" resultType="Tag" parameterType="Integer">
+		SELECT tid,tname from tag 
+		<where>
+			<if test="tid != null">
+				tid = #{tid}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 图书类型表 -->
+	<select id="select_genres" resultType="Genres" parameterType="Genres">
+		SELECT 
+			gid,
+			gname,
+			tid 
+		from 
+			genres 
+		<where>
+			<if test="tid != null">
+				tid = #{tid}
+			</if>
+			<if test="gid != null">
+				and gid = #{gid}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 图书所在省 -->
+	<select id="select_bookprovince" resultType="BookProvince" parameterType="Map">
+		SELECT 
+			pid,
+			pname 
+		from 
+			bookprovince
+		<where>
+			<if test="pid != null">
+				pid = #{pid}
+			</if>
+			<if test="pname != null">
+			 and pname = #{pname}
+			</if>
+		</where> 
+	</select>
+	
+	<!-- 图书所在市 -->
+	<select id="select_bookcity" resultType="BookCity" parameterType="BookCity">
+		SELECT cid,cname,pid from bookcity 
+		<where>
+			<if test="pid != null">
+				pid = #{pid}
+			</if>
+			<if test="cname != null">
+				and cname = #{cname}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 图书所在县 -->
+	<select id="select_bookcounty" resultType="BookCounty" parameterType="BookCounty">
+		SELECT id,name,cid from bookcounty
+		<where>
+			<if test="cid != null">
+			 cid = #{cid}
+			</if>
+			<if test="name != null">
+				and name = #{name}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 账户表 -->
+	<select id="select_account" parameterType="Account" resultType="Account">
+		SELECT
+			id, 
+			uid,
+			money,
+			datetime,
+			note,
+			sumMoney 
+		from 
+			account 
+		<where>
+			<if test="uid != null">
+				uid = #{uid}
+			</if>
+			<if test="note != null">
+				note = #{note}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询account中的金钱的总额 -->
+	<select id="select_totalMoneyAccount" parameterType="String" resultType="Float">
+		select SUM(money) from account WHERE  uid=#{uid};
+	</select>
+</mapper>

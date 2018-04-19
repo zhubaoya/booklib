@@ -1,0 +1,212 @@
+@CHARSET "UTF-8";
+
+/* 搜索框 */
+body{
+	margin: 0;
+}
+#div_search{
+	position:absolute;
+	left:5%;
+	width: 90%;
+	top:9%;
+}
+#serrch_img{
+	float: left;
+}
+#search_box{
+	border:1px solid gray;
+	position:absolute;
+	top:30%;
+	width:58.3%;
+	left: 25%;
+	font: normal 20px/35px "楷体";
+}
+#td_txt{
+ 	width: 87.6%;
+ 	height: 100%;
+ }
+#td_select{
+	width: 20%;
+ 	height: 100%;
+}
+#txt_search{
+	width: 100%;
+	height: 100%;
+	font: normal 18px/50px "楷体";
+	border: none;
+	outline: none;
+	margin-right: 30%;
+}
+#select_type{
+	width:100%;
+	height: 36px;
+	font: normal 22px/50px "楷体";
+	outline: none;
+	float: right;
+}
+
+/* 显示书籍数据 */
+#show_data{
+	position: absolute;
+	border-top:none;
+	border-bottom:none;
+	background-color:#EEEEE0;
+	width: 52.6%;
+	left: 27.5%;
+	top:19.8%;
+	z-index:100;
+	display: none;
+}
+#show_data tr,#show_data td{
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	font: normal 15px/30px "楷体";
+}
+
+/* 图书标签和类型 */
+#tag_div{
+	position: relative;
+	margin-left:2%;
+	margin-top: 12%;
+	font: normal 20px/30px "仿宋";
+}
+
+#genres_div{
+	position: relative;
+	margin-left:2%;
+	margin-top:6px;
+	font: normal 20px/30px "仿宋";
+	dispaly:none;
+}
+
+#tag_div span,#genres_div span{
+	font: bold 21px/30px "仿宋";
+	margin-right: 20px;
+}
+
+#tag_div a,#genres_div a{
+	font: normal 18px/30px "楷体";
+	text-decoration: none;
+	border-radius:3px;
+	margin-right: 20px;
+	border:1px solid gray;
+}
+
+#tag_div a:link,#genres_div a:link { 
+	color: #000000;  
+} 
+#tag_div a:visited,#genres_div a:visited { 
+	color: #000000; 
+} 
+
+/*
+图书标签和详细信息布局
+*/
+#main_book{
+	position: relative;
+	margin-top:1%;
+	width: 100%;
+}
+article {
+	width: 98%;
+}
+
+article figure figcaption a:VISITED {
+	color: red;
+}
+
+article figure figcaption a:HOVER {
+	color: red;
+}
+
+article figure {
+	float: left;
+	display: inline;
+	text-align: center;
+	margin: 10px 10px;
+	width: 20%;
+	font-size: 12px;
+	height: 200px;
+	overflow: hidden;
+}
+
+article figure img {
+	width: 70%;
+	height: 90%;
+}
+
+article figure footer {
+	font-size: 5px;
+}
+
+article figure figcaption {
+	position: relative;
+	bottom: 16px;
+	background-color: white;
+	width: 100ox;
+	color: #00f;
+	display: none;
+}
+
+article figure:hover figcaption {
+	display: block;
+}
+
+article figure a img:hover figcaption {
+	display: block;
+}
+
+/* 蒙版页 */
+#div_mask{
+	position: absolute;
+	top:0;
+	width:100%;
+	height:120%;
+	background-color: black;
+	opacity:0.2;
+	z-index:50;
+	display: none;
+}
+
+/* 显示对话框 */
+#login_register{
+	position:absolute;
+	top:0;
+	left:32%;
+	height:100px;
+	width: 450px;
+	border:1px solid gray;
+	border-radius:5px;
+	z-index: 100;
+	background-color: white;
+	text-align: center;
+	display: none;
+}
+#login_register img{
+	position: absolute;
+	left: 96%;
+}
+#prompt_login{
+	position: absolute;
+	left: 10%;
+	bottom: 0;
+}
+#prompt_register{
+	position: absolute;
+	right: 10%;
+	bottom: 0;
+}
+#login_register span{
+	position:absolute;
+	top:30%;
+	left:15%;
+	font-size: normal 20px/30px "楷体";
+}
+
+.prompt_login_register{
+	border:1px solid gray;
+	font:normal 18px/25px "楷体";
+	border-radius:5px;
+	outline: none;
+}

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zby.books.configuration.insert_mapper">
+
+	<!-- 执行将数据添加到管理员admin表的插入语句 -->
+	<insert id="insert_admin" useGeneratedKeys="true" parameterType="Admin">
+		INSERT into admin(aname,apass,pressname,userid,handId) values(#{aname},#{apass},#{pressName},#{userid},#{handid});
+	</insert>
+	
+	<!-- 执行将数据添加到book表插入语句 -->
+	<insert id="insert_book" useGeneratedKeys="true" parameterType="Book">
+		INSERT INTO book (
+			bisbn,
+			authorName,
+			gid,
+			bname,
+			bprice,
+			pressId,
+			bpublication,
+			bnumber,
+			bimg,
+			babstract,
+			earnest
+		)
+		VALUES
+		(
+			#{bisbn},
+			#{authorName},
+			#{genresId},
+			#{bname},
+			#{bprice},
+			#{pressId},
+			#{publication},
+			#{bnumber},
+			#{bimg},
+			#{babstract},
+			#{earnest}
+		);
+	</insert>
+	
+	<!-- 执行将数据添加到书籍所在地区市的bookcity表中 -->
+	<insert id="insert_book_city" useGeneratedKeys="true" parameterType="BookCity">
+		insert into bookcity(cname,pid) value(#{cname},#{pid});
+	</insert>
+	
+	<!-- 执行将数据天机到书籍所在县级市bookcounty表中 -->
+	<insert id="insert_book_county" useGeneratedKeys="true" parameterType="BookCounty">
+		insert into bookcounty(name,cid) value(#{name},#{cid});
+	</insert>
+	
+	<!-- 执行将数据添加到书籍所在省份bookprovince表中 -->
+	<insert id="insert_book_province" useGeneratedKeys="true" parameterType="BookProvince">
+		 insert into bookprovince(pname) value(#{pname});
+	</insert>
+	
+	<!-- 执行将数据添加到评论区comments表中 -->
+	<insert id="insert_comments" useGeneratedKeys="true" parameterType="Comment">
+		insert into comments(uid,isbn,comment,commentdate,bookname) 
+		values(#{uid},#{isbn},#{comment},#{commentDate},#{bookname});
+	</insert>
+	
+	<!-- 执行将数据添加到联系后台管理contactadmin表中 -->
+	<insert id="insert_contact_admin" useGeneratedKeys="true" parameterType="ContactAdmin">
+		insert into contactadmin(name,phone,content,pressname) 
+		values(#{name},#{phone},#{content},#{pressName});
+	</insert>
+	
+	<!-- 执行将数据添加到书籍类型genres表中 -->
+	<insert id="insert_genres" useGeneratedKeys="true" parameterType="Genres">
+		insert into genres(gname,tid) values(#{gname},#{tid});
+	</insert>
+	
+	<!-- 执行将数据 批量 添加到书籍国际编号的isbn表中 -->
+	<insert id="insert_isbn" useGeneratedKeys="true">
+		insert into isbn(bookcode,isbn,bookplace)values
+		<foreach collection="list" item="isbn" index="index" separator=",">
+			(#{isbn.bookCode},#{isbn.isbn},#{isbn.bookPlace})
+		</foreach>
+	</insert>
+	
+	<!-- 执行将数据添加到订单orderform表中 -->
+	<insert id="insert_order_form" useGeneratedKeys="true" parameterType="OrderForm">
+		insert into orderform(user_id,book_isbn,lend_time,bookcode,userphone,useraddress,username,bookname,pressname,price) 
+		values(#{userId},#{bookIsbn},#{lendTime},#{bookCode},#{userphone},#{userAddress},#{username},#{bookname},#{pressname},#{price});
+	</insert>
+	
+	<!-- 执行将数据添加到书籍标签表tag表中 -->
+	<insert id="insert_tag" useGeneratedKeys="true" parameterType="Tag">
+		insert into tag(tname) values(#{tname});
+	</insert>
+	
+	<!-- 执行将数据添加到用户user表中 -->
+	<insert id="insert_user" useGeneratedKeys="true" parameterType="User">
+		INSERT INTO USER (
+			uid,
+			uname,
+			newpass,
+			uphone,
+			uemail,
+			sex,
+			portrait			
+		)
+		VALUES
+		(
+			#{uid},
+			#{uname},
+			#{newpass},
+			#{uphone},
+			#{uemail},
+			#{usex},
+			#{portrait}
+		);
+	</insert>
+	
+	<!-- 执行将数据添加到用户地址useraddress表中 -->
+	<insert id="insert_user_address" useGeneratedKeys="true" parameterType="UserAddress">
+		INSERT into useraddress(address,uid,username,userphone)
+		VALUES(#{address},#{uid},#{username},#{userphone});
+	</insert>
+	
+	<!-- 执行将数据添加到用户账号account表中 -->
+	<insert id="insert_account" useGeneratedKeys="true" parameterType="Account">
+		insert into account(money,datetime,note,uid) 
+		values(#{money},#{datetime},#{note},#{uid});
+	</insert>
+	
+	<insert id="insert_press" useGeneratedKeys="true" parameterType="Press">
+		insert into press(pname,address,postcode,phone,purchasephone,website,ICP) 
+		values(#{pname},#{address},#{postcode},#{phone},#{purchasePhone},#{website},#{ICP});
+	</insert>
+</mapper>

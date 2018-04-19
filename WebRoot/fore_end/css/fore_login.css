@@ -1,0 +1,87 @@
+body {
+	magin: 0;
+	background-color: #88aacc;
+}
+
+.center {
+	margin: 120px auto;
+	width: 60%;
+	height: 60%;
+	background-color: #6495ED;
+}
+
+#header {
+	color: royalblue;
+	font-size: 20px;
+	font-family: "·ÂËÎ";
+}
+
+.middle {
+	width: 96%;
+	height: 235px;
+}
+
+#left_img {
+	float: left;
+	width: 350px;
+	background-color: #6495ED;
+}
+
+#rignt_login {
+	margin-top: 30px;
+	float: left;
+}
+
+ul {
+	list-style-type: none;
+}
+
+#login_form {
+	color: black;
+	font-size: 20px;
+}
+
+li {
+	padding: 5px;
+}
+
+#login_usernamespan,#login_passwordspan {
+	margin-right: auto;
+	border-radius:5px;
+	font-size: 12px;
+	color: red;
+}
+
+#login {
+	text-align: center;
+	font-size: 25px;
+	border: none;
+}
+
+#log,#re {
+	background-color: lightgray;
+	font-size: 20px;
+	border: none;
+}
+
+#re {
+	margin-left: 40px;
+}
+
+#find {
+	color: blue;
+	font-size: 16px;
+	float: right;
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.footer {
+	font-family: "·ÂËÎ";
+	font-size: 18px;
+	font-style: italic;
+}
+#result{
+	color: red;
+	font: bold 15px/30px "·ÂËÎ";
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zby.books.configuration.delete_mapper">
+
+	<!-- 删除用户的信息 -->
+	<delete id="delete_user" parameterType="String">
+		delete from user where 	uid = #{uid}
+	</delete>
+
+	<!-- 通过id删除用户用户地址表 -->
+	<delete id="delete_user_address_by_id" parameterType="Integer">
+		delete from useraddress where id = #{id};
+	</delete>
+	
+	<!-- 通过uid删除用户用户地址表 -->
+	<delete id="delete_user_address_by_uid" parameterType="String">
+		delete from useraddress where uid = #{uid};
+	</delete>
+	
+	<!-- 删除账户表 -->
+	<delete id="delete_account" parameterType="String">
+		delete from account where uid = #{uid};
+	</delete>
+	
+	<!-- 从book表中删除图书 -->
+	<delete id="delete_book" parameterType="String">
+		delete from book where bisbn = #{bisbn};
+	</delete>
+	
+	<!-- 从isbn表中删除该图书的全部书籍 -->
+	<delete id="delete_isbn_by_isbn" parameterType="String">
+		delete from isbn where isbn = #{isbn};
+	</delete>
+	
+	<!-- 从isbn表中删除该图书的某本图书 -->
+	<delete id="delete_isbn_by_bookcode" parameterType="String">
+		delete from isbn where bookcode = #{bookCode};
+	</delete>
+	
+	<!-- 通过id删除评论表 -->
+	<delete id="delete_comments_by_id" parameterType="Integer">
+		delete from comments where id = #{id};
+	</delete>
+	
+	<!-- 通过uid删除评论表 -->
+	<delete id="delete_comments_by_uid" parameterType="String">
+		delete from comments where uid = #{uid};
+	</delete>
+	
+	
+	
+</mapper>

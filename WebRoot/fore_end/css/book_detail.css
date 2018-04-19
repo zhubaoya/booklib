@@ -1,0 +1,249 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+}
+
+/* 图书信息 */
+#bd_body {
+	position: absolute;
+	top: 6%;
+	width: 96%;
+	height: 35%;
+	left: 2%;
+}
+
+#bd_book {
+	position: absolute;
+	top: 2%;
+	width: 96%;
+	height: 100%;
+	left: 2%;
+}
+
+#bd_book_img {
+	position: relative;
+	width: 28%;
+	height: 100%;
+	margin-left: 10%;
+	float: left;
+}
+
+#bd_book_info {
+	position: relative;
+	margin-top: 2%;
+	margin-left: -20px;
+	width: 60%;
+	float: left;
+}
+
+.book_detail {
+	font: normal 20px/30px "仿宋";
+}
+
+.book_content {
+	font: normal 16px/30px "楷体";
+}
+
+.bd_select {
+	font: normal 16px/30px "楷体";
+	border-radius: 5px;
+}
+
+#submit_define {
+	font: bold 20px/25px "楷体";
+	border-radius: 5px;
+	border: 1px solid red;
+	text-decoration: none;
+}
+/* 地址信息 */
+#individual_user_address {
+	position: absolute;
+	top: 20%;
+	width: 80%;
+	left: 10%;
+	z-index: 200;
+	background-color: white;
+	display: none;
+}
+
+#individual_user_address fieldset {
+	border-color: #FFFFF0;
+	border-radius: 10px;
+	font: normal 20px/30px "楷体";
+}
+
+#individual_user_address table {
+	width: 100%;
+	height: 100%;
+	border: none;
+	text-align: left;
+}
+
+#individual_user_address table th {
+	font: normal 20px/30px "楷体";
+	border-radius: 5px;
+	border-bottom: none;
+	border-color: #FFFAFA;
+	color: red;
+}
+
+#individual_user_address div a:HOVER {
+	color: red;
+}
+
+/* 蒙版 */
+#bd_mask {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 160%;
+	background-color: gray;
+	opacity: 0.2;
+	z-index: 100;
+	display: none;
+}
+
+/* 出版社信息 */
+#bd_press {
+	position: relative;
+	margin-top: 34%;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.on_hr_statement {
+	font: normal 18px/30px "仿宋";
+	color: red;
+}
+
+#individual_order_form {
+	position: relative;
+	margin-top: 2%;
+	width: 98%;
+}
+
+#individual_order_form fieldset {
+	border-color: #FFFFF0;
+	border-radius: 10px;
+	font: normal 20px/30px "楷体";
+}
+
+#individual_order_form table {
+	width: 100%;
+	height: 100%;
+	border: none;
+	text-align: left;
+}
+
+#individual_order_form table th {
+	font: normal 20px/30px "楷体";
+	border-radius: 5px;
+	border-bottom: none;
+	border-color: #FFFAFA;
+	color: red;
+}
+
+/* 评论表 */
+#indivicdual_comment {
+	position: relative;
+	margin-top: 3.5%;
+	width: 80%;
+	margin-left: 10%;
+}
+
+#indivicdual_comment strong {
+	font: normal 22px/30px "楷体"
+}
+
+#indivicdual_comment a {
+	text-decoration: none;
+	font: normal 20px/30px "楷体"
+}
+
+#indivicdual_comment a:HOVER {
+	color: red;
+}
+
+#indivicdual_comment span {
+	font: normal 17px/30px "楷体"
+}
+
+/* 添加评论 */
+#bd_comments {
+	position: relative;
+	margin-top: 3%;
+	width: 80%;
+	margin-left: 10%;
+}
+
+#text_comment {
+	font: normal 15px/25px "楷体";
+}
+
+#submit_comment {
+	font: normal 20px/25px "楷体";
+	text-decoration: none;
+}
+
+/* 订单信息表 */
+#show_orderformInfo {
+	position: absolute;
+	top: 18%;
+	width: 33%;
+	left: 35%;
+	z-index: 130;
+	border: 1px solid gray;
+	border-radius: 10px;
+	display: none;
+	background-color: white;
+}
+
+#tb_oderform_info label {
+	font: normal 20px/35px "楷体";
+}
+
+#tb_oderform_info span {
+	font: normal 18px/35px "楷体";
+}
+
+#tb_oderform_info input {
+	border: 1px solid gray;
+	border-radius: 5px;
+	font: normal 20px/25px "楷体";
+	text-align: center;
+}
+
+/* 充值 */
+#bd_recharge {
+	position: absolute;
+	top: 20%;
+	left: 40%;
+	border-radius: 5px;
+	background-color: white;
+	z-index: 300;
+	border: 1px solid gray;
+	display: none;
+}
+
+#input_money {
+	border-radius: 2px;
+	font: normal 18px/25px "楷体";
+}
+
+/* 联系出版社 */
+#bd_contactAdmin {
+	position: relative;
+	margin-top: 3.5%;
+	width: 80%;
+	margin-left: 10%;
+}
+
+#admin_content {
+	font: normal 15px/25px "楷体";
+}
+
+#submit_content {
+	font: normal 20px/25px "楷体";
+	text-decoration: none;
+}

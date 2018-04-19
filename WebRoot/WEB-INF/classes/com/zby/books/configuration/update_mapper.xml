@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zby.books.configuration.update_mapper">
+
+	<!-- 更新用户名和密码，可以用户更新操作 -->
+	<update id="update_user_password" parameterType="Map">
+		update user set oldpass=newpass, newpass=#{newpass} where uname=#{uname};
+	</update>
+	
+	<!-- 更新用户的个人信息 -->
+	<update id="update_user" parameterType="User">
+		update user 
+		<set>
+			<if test="uphone != null">
+				uphone=#{uphone},
+			</if>
+			<if test="uemail != null">
+				uemail=#{uemail},
+			</if>
+			<if test="usex != null">
+				sex=#{usex},
+			</if>
+			<if test="loginDateTime != null">
+				logindate=#{loginDateTime},
+			</if>
+			<if test="signin != null">
+				signin=#{signin},
+			</if>
+			<if test="member != null">
+				member=#{member},
+			</if>
+			<if test="portrait != null">
+				portrait=#{portrait}
+			</if>				
+		</set>
+			where uid=#{uid};
+	</update>
+	
+	<!-- 更新图书信息 -->
+	<update id="update_book" parameterType="Book">
+		update book
+		<trim prefix="set" suffixOverrides=",">
+			<if test="authorName != null">
+				authorName=#{authorName},
+			</if>
+			<if test="bprice != null">
+				bprice=#{bprice},
+			</if>
+			<if test="babstract != null">
+				babstract=#{babstract},
+			</if>
+			<if test="earnest != null">
+				earnest=#{earnest},
+			</if>
+			<if test="bstatus != null">
+				bstatus=#{bstatus}
+			</if>
+		</trim>
+			where bisbn=#{bisbn};
+	</update>
+	
+	
+	<!-- 更新图书数量 -->
+	<update id="update_book_Number">
+		UPDATE book set bnumber=bnumber-1 where bisbn=#{bisbn} and bnumber>0 ;
+	</update>
+	
+	<!-- 图书数量加1 -->
+	<update id="update_book_Numberplusplus">
+		UPDATE book set bnumber=bnumber+1 where bisbn=#{bisbn} ;
+	</update>
+	
+	<!-- 更新图书的订购数量 -->
+	<update id="update_book_borrowedTime" parameterType="String">
+		UPDATE book set borrowedtime=borrowedtime+1 where bisbn=#{isbn};
+	</update>
+	
+	<!-- 更新图书的点击数量 -->
+	<update id="update_book_clickTime" parameterType="String">
+		UPDATE book set clickedtime=clickedtime+1 where bisbn=#{isbn};
+	</update>
+	
+	<!-- 更新联系后台管理员 -->
+	<update id="update_contact_admin" parameterType="ContactAdmin">
+		update contactadmin 
+		<set>
+			<if test="status != null">
+				status=#{status}
+			</if>
+		</set>
+		<where>
+			<if test="caid != null">
+				caid=#{caid}
+			</if>
+		</where>
+	</update>
+	
+	<!-- 更新isbn表的信息 -->
+	<update id="update_isbn" parameterType="ISBN">
+		update isbn
+		<set>
+			<if test="bookPlace != null">
+				bookplace=#{bookPlace},
+			</if>
+			<if test="status != null">
+				status=#{status},
+			</if>
+			<if test="intactSituation">
+				intactsituation=#{intactSituation}				
+			</if>
+		</set>
+		<where>
+			<if test="bookCode != null">
+				bookcode=#{bookCode}
+			</if>
+		</where>
+	</update>
+	
+	<!-- 更新订单表 -->
+	<update id="update_orderform" parameterType="OrderForm">
+		update orderform 
+		<set>
+			<if test="username != null">username=#{username},</if>
+			<if test="userphone != null">userphone=#{userphone},</if>
+			<if test="userAddress != null">useraddress=#{userAddress}</if>
+			<if test="bookStatus != null">book_status = #{bookStatus}</if>
+		</set>
+		<where>
+			<if test="orderId != null">
+				order_id=#{orderId}
+			</if>
+		</where>
+	</update>
+
+</mapper>

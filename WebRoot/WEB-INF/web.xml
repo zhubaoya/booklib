@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>booklib</display-name>
+  
+  <!-- 欢迎文件 -->
+  <welcome-file-list>
+   <!--  <welcome-file>back_end/jsp/back_login.jsp</welcome-file> -->
+    <welcome-file>fore_end/jsp/fore_main.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 配置jsp页面 -->
+  <jsp-config>
+  	<jsp-property-group>
+  		<description>jsp页面的配置项</description>
+  		<url-pattern>*.jsp</url-pattern>
+  		<page-encoding>UTF-8</page-encoding>
+  		<trim-directive-whitespaces>true</trim-directive-whitespaces>
+  	</jsp-property-group>
+  </jsp-config>
+  
+  <!-- 设置错误页面显示信息 -->
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/500_error.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/404_error.jsp</location>
+  </error-page>
+  
+  <!-- log4j配置项 -->
+  <context-param>
+  	<param-name>webAppRootKey</param-name>
+  	<param-value>webApp.root</param-value>
+  </context-param>
+  
+  
+  <!-- 配置错误页面 -->
+ 	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/500_error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/500_error.jsp</location>
+	</error-page>
+  
+  <!-- 字符集的过滤器 -->
+	<filter>
+		<filter-name>charfilter</filter-name>
+		<filter-class>com.zby.books.web.filter.CharSetFilter</filter-class>
+		<init-param>
+			<param-name>encode</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>charfilter</filter-name>
+		<!-- 该过滤器映射到所有类中 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+  <!-- 后台登录页面的过滤器 -->
+  <filter>
+  	<filter-name>init_press</filter-name>
+  	<filter-class>com.zby.books.back_end.web.filter.InitPress</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>init_press</filter-name>
+  	<url-pattern>/back_end/jsp/back_login.jsp</url-pattern>
+  </filter-mapping>
+  
+  <!-- 后台登录界面 -->
+  <servlet>
+  	<servlet-name>back_login</servlet-name>
+  	<servlet-class>com.zby.books.back_end.web.controllers.BackLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>back_login</servlet-name>
+  	<url-pattern>/back_dologin</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 前台登录界面 -->
+  <servlet>
+  	<servlet-name>fore_login</servlet-name>
+  	<servlet-class>com.zby.books.fore_end.web.controllers.ForeLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>fore_login</servlet-name>
+  	<url-pattern>/foreLogin</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 前台获取搜索框的信息  -->
+  <servlet>
+  	<servlet-name>searchTxt</servlet-name>
+  	<servlet-class>com.zby.books.fore_end.web.controllers.SearchTxtGotServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>searchTxt</servlet-name>
+  	<url-pattern>/fore_main_searchBox</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 前台注册页面 -->
+  <servlet>
+  	<servlet-name>fore_register</servlet-name>
+  	<servlet-class>com.zby.books.fore_end.web.controllers.ForeRegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>fore_register</servlet-name>
+  	<url-pattern>/foreregister</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>fore_register</servlet-name>
+  	<url-pattern>/checkUserName</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 前台找回密码 -->
+  <servlet>
+  	<servlet-name>fore_find_password</servlet-name>
+  	<servlet-class>com.zby.books.fore_end.web.controllers.PasswordFoundServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>fore_find_password</servlet-name>
+  	<url-pattern>/fore_find_Password</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>fore_find_password</servlet-name>
+  	<url-pattern>/checkUpdateName</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 前台注销 -->
+  <servlet>
+  	<servlet-name>fore_logoff</servlet-name>
+  	<servlet-class>com.zby.books.fore_end.web.controllers.ForeLogOffServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+ 		<servlet-name>fore_logoff</servlet-name>
+ 		<url-pattern>/checkorderform</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 前台添加用户地址 -->
+  <servlet>
+  	<servlet-name>add_address</servlet-name>
+  	<servlet-class>com.zby.books.fore_end.web.controllers.UserAddressAddedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>add_address</servlet-name>
+  	<url-pattern>/addUserAddress</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>add_address</servlet-name>
+  	<url-pattern>/delete_comments</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 前台书籍详情 -->
+  <servlet>
+  	<servlet-name>book_detail</servlet-name>
+  	<servlet-class>com.zby.books.fore_end.web.controllers.BookDetailServlet</servlet-class>
+  </servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>book_detail</servlet-name>
+ 		<url-pattern>/AddBookComment</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>book_detail</servlet-name>
+ 		<url-pattern>/generateOrderForm</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>book_detail</servlet-name>
+ 		<url-pattern>/foreEndRecharge</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>book_detail</servlet-name>
+ 		<url-pattern>/IpPlace</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>book_detail</servlet-name>
+ 		<url-pattern>/contactadmin</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<servlet>
+ 		<servlet-name>press</servlet-name>
+ 		<servlet-class>com.zby.books.fore_end.web.controllers.PressRegisterServlet</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>press</servlet-name>
+ 		<url-pattern>/pressRegister</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>press</servlet-name>
+ 		<url-pattern>/myindividual</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>press</servlet-name>
+ 		<url-pattern>/myorganize</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<!-- 后台数据 -->
+ 	<!-- 添加图书 -->
+ 	<servlet>
+ 		<servlet-name>addBook</servlet-name>
+ 		<servlet-class>com.zby.books.back_end.web.controllers.BookAddedServlet</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/ba_bookAdd</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/genresIdGotServlet</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/addTag</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/addGenres</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/validateIsbnRepeated</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/bookHasExist</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/bookProvince</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/bookCity</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/addBookProvince</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/addBookCity</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/addBookCounty</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>addBook</servlet-name>
+ 		<url-pattern>/addIsbnInfo</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<!-- 删除图书 -->
+ 	<servlet>
+ 		<servlet-name>delete_book</servlet-name>
+ 		<servlet-class>com.zby.books.back_end.web.controllers.DeleteBookServlet</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>delete_book</servlet-name>
+ 		<url-pattern>/deleteBook</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>delete_book</servlet-name>
+ 		<url-pattern>/deleteonebook</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>delete_book</servlet-name>
+ 		<url-pattern>/deleteallbook</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<!-- 修改图书 -->
+ 	<servlet>
+ 		<servlet-name>modifyBook</servlet-name>
+ 		<servlet-class>com.zby.books.back_end.web.controllers.ModifyBookServlet</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>modifyBook</servlet-name>
+ 		<url-pattern>/modifybook</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>modifyBook</servlet-name>
+ 		<url-pattern>/modifyonebook</url-pattern>
+ 	</servlet-mapping>
+ 	<servlet-mapping>
+ 		<servlet-name>modifyBook</servlet-name>
+ 		<url-pattern>/modify_book</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<!-- 选择查询 -->
+ 	<servlet>
+ 		<servlet-name>queryBook</servlet-name>
+ 		<servlet-class>com.zby.books.back_end.web.controllers.BookQueryServlet</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>queryBook</servlet-name>
+ 		<url-pattern>/bookquery</url-pattern>
+ 	</servlet-mapping>
+ 	
+ 	<!-- 联系后台管理员 -->
+ 	<servlet>
+		<servlet-name>contactids</servlet-name>
+		<servlet-class>com.zby.books.back_end.web.controllers.ContactAdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>contactids</servlet-name>
+		<url-pattern>/contactIds</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>contactids</servlet-name>
+		<url-pattern>/contactAdminSelect</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>contactids</servlet-name>
+		<url-pattern>/back_contact_admin</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 归还图书 -->
+	<servlet>
+		<servlet-name>ordeform</servlet-name>
+		<servlet-class>com.zby.books.back_end.web.controllers.OrderFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ordeform</servlet-name>
+		<url-pattern>/orderformquery</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ordeform</servlet-name>
+		<url-pattern>/modifyorderform</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ordeform</servlet-name>
+		<url-pattern>/returnbook</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

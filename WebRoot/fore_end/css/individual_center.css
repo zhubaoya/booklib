@@ -1,0 +1,145 @@
+@CHARSET "UTF-8";
+
+/*退出标签*/
+body{
+	margin: 0;
+}
+#log_out{
+	position: absolute;
+	background-color:#C2C2C2;
+	top:0;
+	width: 100%;
+	height: 4.5%;
+	font: bold 16px/29px "仿宋";
+	text-align: right;
+	z-index:101;
+}
+#log_out a{
+	text-decoration: none;
+	color: black;	
+	margin-right: 1.5%;
+}
+#log_out a:HOVER{
+	color:red;
+	text-decoration: underline;
+}
+
+/*个人信息*/
+#individual_info{
+	position:absolute;
+	top:5%;
+	width: 98%;
+	height: 20%;
+}
+#individual_info .fs_set{
+	border-color:#FFFFF0;
+	border-radius:10px;
+	font:normal 20px/30px "楷体";
+}
+#individual_info div{
+	position:absolute;
+	top:12%;
+	left:83%;
+	text-align: right;
+}
+
+/*用户地址信息*/
+#individual_user_address {
+	position:relative;
+	margin-top:22%;
+	width: 98%;
+}
+#individual_user_address fieldset{
+	border-color:#FFFFF0;
+	border-radius:10px;
+	font:normal 20px/30px "楷体";
+}
+#individual_user_address table{
+	width: 100%;
+	height: 100%;
+	border:none;
+	text-align: left;
+}
+#individual_user_address table th{
+	font:normal 20px/30px "楷体";
+	border-radius:5px;
+	border-bottom:none;
+	border-color:	#FFFAFA;
+	color: red;
+}
+#individual_user_address div a:HOVER{
+	color: red;
+}
+/* 用户订单表 */
+#individual_order_form{
+	position:relative;
+	margin-top:2%;
+	width: 98%;
+	
+}
+#individual_order_form fieldset{
+	border-color:#FFFFF0;
+	border-radius:10px;
+	font:normal 20px/30px "楷体";
+}
+#individual_order_form table{
+	width: 100%;
+	height: 100%;
+	border:none;
+	text-align: left;
+}
+#individual_order_form table th{
+	font:normal 20px/30px "楷体";
+	border-radius:5px;
+	border-bottom:none;
+	border-color:	#FFFAFA;
+	color: red;
+}
+
+/* 评论表 */
+#indivicdual_comment{
+	position:relative;
+	margin-top:3%;
+	width: 98%;
+}
+#indivicdual_comment strong{
+	font: normal 22px/30px "楷体"
+}
+#indivicdual_comment a{
+	text-decoration: none;
+	font: normal 20px/30px "楷体"
+}
+#indivicdual_comment a:HOVER {
+	color:red;
+}
+#indivicdual_comment span{
+	font: normal 17px/30px "楷体"
+}
+
+/* 用户账单表 */
+#recharge_recorder {
+	position:relative;
+	margin-top:3%;
+	width: 98%;
+}
+#recharge_recorder fieldset{
+	border-color:#FFFFF0;
+	border-radius:10px;
+	font:normal 20px/30px "楷体";
+}
+#recharge_recorder table{
+	width: 100%;
+	height: 100%;
+	border:none;
+	text-align: left;
+}
+#recharge_recorder table th{
+	font:normal 20px/30px "楷体";
+	border-radius:5px;
+	border-bottom:none;
+	border-color:	#FFFAFA;
+	color: red;
+}
+#recharge_recorder div a:HOVER{
+	color: red;
+}
