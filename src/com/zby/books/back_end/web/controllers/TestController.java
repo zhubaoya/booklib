@@ -8,4 +8,8 @@ package com.zby.books.back_end.web.controllers;
  */
 public class TestController {
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
