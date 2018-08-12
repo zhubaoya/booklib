@@ -55,6 +55,7 @@ public class BackLoginServlet extends HttpServlet {
 			GlobalVariable.pressId = pid;
 			GlobalVariable.pressName = pressname;
 
+
 		
 			if (result) {
 				session.setAttribute("pressname", pressname);
